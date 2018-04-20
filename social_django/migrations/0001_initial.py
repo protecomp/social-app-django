@@ -18,16 +18,15 @@ NONCE_SERVER_URL_LENGTH = getattr(
     settings, setting_name('NONCE_SERVER_URL_LENGTH'), 255
 )
 ASSOCIATION_SERVER_URL_LENGTH = getattr(
-    settings, setting_name('ASSOCIATION_SERVER_URL_LENGTH'), 255
+    settings, setting_name('ASSOCIATION_SERVER_URL_LENGTH'), 150
 )
 ASSOCIATION_HANDLE_LENGTH = getattr(
-    settings, setting_name('ASSOCIATION_HANDLE_LENGTH'), 255
+    settings, setting_name('ASSOCIATION_HANDLE_LENGTH'), 150
 )
 
 
 class Migration(migrations.Migration):
     replaces = [
-        ('default', '0001_initial'),
         ('social_auth', '0001_initial')
     ]
 
@@ -106,17 +105,5 @@ class Migration(migrations.Migration):
                 'db_table': 'social_auth_usersocialauth',
             },
             bases=(models.Model, DjangoUserMixin),
-        ),
-        migrations.AlterUniqueTogether(
-            name='usersocialauth',
-            unique_together={('provider', 'uid')},
-        ),
-        migrations.AlterUniqueTogether(
-            name='code',
-            unique_together={('email', 'code')},
-        ),
-        migrations.AlterUniqueTogether(
-            name='nonce',
-            unique_together={('server_url', 'timestamp', 'salt')},
         ),
     ]
