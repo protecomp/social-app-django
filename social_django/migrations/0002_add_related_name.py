@@ -26,16 +26,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='association',
-            name='server_url',
-            field=models.CharField(max_length=ASSOCIATION_SERVER_URL_LENGTH),
-        ),
-        migrations.AlterField(
-            model_name='association',
-            name='handle',
-            field=models.CharField(max_length=ASSOCIATION_HANDLE_LENGTH),
-        ),
+        migrations.RunSQL('ALTER TABLE {dbname}.social_auth_association MODIFY COLUMN server_url varchar({length}) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL ;'.format(
+            dbname=settings.DATABASES['default']['NAME'],
+            length=ASSOCIATION_SERVER_URL_LENGTH
+        )),
+        migrations.RunSQL('ALTER TABLE {dbname}.social_auth_association MODIFY COLUMN handle varchar({length}) CHARACTER SET utf8 COLLATE utf8_swedish_ci NOT NULL ;'.format(
+            dbname=settings.DATABASES['default']['NAME'],
+            length=ASSOCIATION_HANDLE_LENGTH
+        )),
         migrations.AlterField(
             model_name='usersocialauth',
             name='user',
