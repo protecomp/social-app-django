@@ -5,10 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/python-social-auth/social-app-django/commits/master)
+## [3.1.0](https://github.com/python-social-auth/social-app-django/releases/tag/3.1.0) - 2018-10-31
+
+### Changed
+- Updated `JSONField.from_db_value` signature to support multiple Django
+  versions by accepting just the needed parameters.
+
+## [3.0.0](https://github.com/python-social-auth/social-app-django/releases/tag/3.0.0) - 2018-10-28
 
 ### Changed
 - Reduce log level of exceptions to `INFO` if messages app is installed
+- Encode association secret with `encodebytes` if available
+- Decode association secret for proper storage
+- Remove obsolete code from JSONField
+- Pass `user` as keyword argument to `do_complete`
+- Cleanup `username` when using email as username
+- Drop Python 3.3 support
+- Correct spelling errors
+- Correct version that renamed `field.rel`
+- Reduce error logs in `SocialAuthExceptionMiddleware`
 
 ## [2.1.0](https://github.com/python-social-auth/social-app-django/releases/tag/2.1.0) - 2017-12-22
 
@@ -16,6 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Use Django `urlquote` since it handles unicode
 - Remove version check in favor of import error catch
 - Remove call to deprecated method `_get_val_from_obj()`
+- Drop Python 3.3 support
 
 ## [2.0.0](https://github.com/python-social-auth/social-app-django/releases/tag/2.0.0) - 2017-10-28
 
